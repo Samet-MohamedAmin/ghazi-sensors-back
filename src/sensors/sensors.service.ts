@@ -19,7 +19,11 @@ export class SensorsService {
     return this.sensorsModel.find().exec();
   }
 
-  async findAllDate(year, month, day): Promise<Sensors[]> {
-    return this.sensorsModel.find({date: new Date(`${year}-${month}-${day}`)}).exec();
+  async findAllDate(year: number, month:number, day: number): Promise<Sensors[]> {
+    const startDate = new Date(`${year}-${month}-${day}`);
+    startDate.setUTCHours(0);
+    const DAY = 60 * 60 * 24 * 1000;
+    const endDate = new Date(startDate.getTime() + DAY);
+    return this.sensorsModel.find({date: { $gte: startDate, $lte: endDate }}).exec();
   }
 }

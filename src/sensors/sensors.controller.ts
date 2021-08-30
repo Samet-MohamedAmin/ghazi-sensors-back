@@ -14,7 +14,10 @@ export class SensorsController {
 
   @Get('/date/:year/:month/:day')
   async findDate(@Param('year') year, @Param('month') month, @Param('day') day): Promise<Sensors[]>{
-    return this.sensorsService.findAllDate(year, month, day);
+    const y = parseInt(year);
+    const m = parseInt(month);
+    const d = parseInt(day);
+    return this.sensorsService.findAllDate(y, m, d);
   }
 
   @Get()
