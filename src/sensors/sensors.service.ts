@@ -16,7 +16,7 @@ export class SensorsService {
   }
 
   async findAll(): Promise<Sensors[]> {
-    return this.sensorsModel.find().exec();
+    return this.sensorsModel.find().sort({ date: 1 }).exec();
   }
 
   async findAllDate(year: number, month:number, day: number): Promise<Sensors[]> {
@@ -24,6 +24,6 @@ export class SensorsService {
     startDate.setUTCHours(0);
     const DAY = 60 * 60 * 24 * 1000;
     const endDate = new Date(startDate.getTime() + DAY);
-    return this.sensorsModel.find({date: { $gte: startDate, $lte: endDate }}).exec();
+    return this.sensorsModel.find({date: { $gte: startDate, $lte: endDate }}).sort({ date: 1 }).exec();
   }
 }
