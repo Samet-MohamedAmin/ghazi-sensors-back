@@ -10,6 +10,9 @@ export class Sensors {
 
   @Prop()
   hum: string;
+
+  @Prop()
+  date: Date
 }
 
 export const SensorsSchema = SchemaFactory.createForClass(Sensors);

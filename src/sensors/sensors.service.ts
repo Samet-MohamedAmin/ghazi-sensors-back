@@ -18,4 +18,8 @@ export class SensorsService {
   async findAll(): Promise<Sensors[]> {
     return this.sensorsModel.find().exec();
   }
+
+  async findAllDate(year, month, day): Promise<Sensors[]> {
+    return this.sensorsModel.find({date: new Date(`${year}-${month}-${day}`)}).exec();
+  }
 }
