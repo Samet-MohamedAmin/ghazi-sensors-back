@@ -24,6 +24,6 @@ export class SensorsService {
     startDate.setUTCHours(0);
     const DAY = 60 * 60 * 24 * 1000;
     const endDate = new Date(startDate.getTime() + DAY);
-    return this.sensorsModel.find({date: { $gte: startDate, $lte: endDate }}).sort({ date: 1 }).exec();
+    return this.sensorsModel.find({date: { $gte: startDate, $lt: endDate }}).sort({ date: 1 }).exec();
   }
 }
