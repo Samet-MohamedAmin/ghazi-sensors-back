@@ -19,11 +19,23 @@ export class SensorsService {
     return this.sensorsModel.find().sort({ date: 1 }).exec();
   }
 
+  async findAllRef(ref: string): Promise<Sensors[]> {
+    return this.sensorsModel.find({ref: ref}).sort({ date: 1 }).exec();
+  }
+
   async findAllDate(year: number, month:number, day: number): Promise<Sensors[]> {
     const startDate = new Date(`${year}-${month}-${day}`);
     startDate.setUTCHours(0);
     const DAY = 60 * 60 * 24 * 1000;
     const endDate = new Date(startDate.getTime() + DAY);
     return this.sensorsModel.find({date: { $gte: startDate, $lt: endDate }}).sort({ date: 1 }).exec();
+  }
+
+  async findAllDateRef(ref: string, year: number, month:number, day: number): Promise<Sensors[]> {
+    const startDate = new Date(`${year}-${month}-${day}`);
+    startDate.setUTCHours(0);
+    const DAY = 60 * 60 * 24 * 1000;
+    const endDate = new Date(startDate.getTime() + DAY);
+    return this.sensorsModel.find({ref: ref, date: { $gte: startDate, $lt: endDate }}).sort({ date: 1 }).exec();
   }
 }

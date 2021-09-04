@@ -6,10 +6,10 @@ export type SensorsDocument = Sensors & Document;
 @Schema()
 export class Sensors {
   @Prop()
-  temp: string;
+  ref: string;
 
   @Prop()
-  hum: string;
+  isPresent: number;
 
   @Prop()
   date: Date
