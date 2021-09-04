@@ -23,7 +23,7 @@ export class SensorsController {
 
     return this.findDate(year, month, day)
                 .then(sensors => {
-                    return sensors.map(s => s.ref).filter(onlyUnique)
+                    return sensors.map(s => s.ref).filter(onlyUnique).sort()
                   });
   }
 
