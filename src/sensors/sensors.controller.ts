@@ -2,12 +2,19 @@ import { Body, Controller, Get, Post, Param, Logger } from '@nestjs/common';
 import { SensorsService } from './sensors.service';
 import { CreateSensorsDto } from './dto/create-sensors.dto';
 import { Sensors } from './schemas/sensors.schema';
+import { CreateSensorsNewDto } from './dto/create-sensors-new.dto';
 
 @Controller('sensors')
 export class SensorsController {
   constructor(private readonly sensorsService: SensorsService) { }
 
   @Post()
+  async createNew(@Body() createSensorsNewDto: CreateSensorsNewDto) {
+    await this.sensorsService.createNew(createSensorsNewDto);
+  }
+
+
+  @Post("/old")
   async create(@Body() createSensorsDto: CreateSensorsDto) {
     await this.sensorsService.create(createSensorsDto);
   }
