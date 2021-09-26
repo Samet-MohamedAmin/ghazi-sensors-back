@@ -22,7 +22,7 @@ export class SensorsService {
   async createNew(createSensorsNewDto: CreateSensorsNewDto): Promise<SensorsNew> {
     console.log("--> create new")
     const createdNewSensors = new this.sensorsNewModel(createSensorsNewDto);
-    const date = createSensorsNewDto.ts;
+    const date = new Date();
     Object.keys(createSensorsNewDto.cars).forEach(key => {
       const createSensorsDto = new CreateSensorsDto();
       createSensorsDto.date = date;
